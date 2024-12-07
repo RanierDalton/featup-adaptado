@@ -1,9 +1,9 @@
-const produtorModel = require('../models/produtorModel');
-const generoModel = require('../models/generoModel');
-const featModel = require('../models/featModel');
+var produtorModel = require('../models/produtorModel');
+var generoModel = require('../models/generoModel');
+var featModel = require('../models/featModel');
 
 function getData(req, res)  {
-    let dados = {
+    var dados = {
         usuariosTotais: 0,
         usuariosAtivos: 0,
         featsTotais: 0,
@@ -31,10 +31,10 @@ function getData(req, res)  {
 }
 
 function filtrarPodio(dados) {
-    let resposta = [];
+    var resposta = [];
 
-    let i = 0;
-    let contador = 0;
+    var i = 0;
+    var contador = 0;
     dados.forEach(function (item)  {
         if(i < 3){
             resposta.push(item);
@@ -44,7 +44,7 @@ function filtrarPodio(dados) {
         i++;
     });
 
-    const objOutros = {nome: 'Outros', total: contador};
+    var objOutros = {nome: 'Outros', total: contador};
 
     resposta.push(objOutros);
 

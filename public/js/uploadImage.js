@@ -1,11 +1,11 @@
-const form = document.getElementById('uploadForm');
+var form = document.getElementById('uploadForm');
 
 form.addEventListener('submit', async (e) =>  {
     e.preventDefault();
 
-    const fileInput = document.getElementById('image');
-    const file = fileInput.files[0];
-    const formData = new FormData();
+    var fileInput = document.getElementById('image');
+    var file = fileInput.files[0];
+    var formData = new FormData();
     formData.append('image', file);
     console.log(formData);
 

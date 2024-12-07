@@ -1,6 +1,6 @@
-const dashboardController = require('../controllers/dashboardController');
-const express = require("express");
-const router = express.Router();
+var dashboardController = require('../controllers/dashboardController');
+var express = require("express");
+var router = express.Router();
 
 router.get("/dashboard", (req, res) => {
     return dashboardController.getData(req, res);

@@ -22,10 +22,10 @@ var medidasRouter = require("./src/routes/medidas");
 var aquariosRouter = require("./src/routes/aquarios");
 var empresasRouter = require("./src/routes/empresas");
 
-const produtorRouter = require('./src/routes/produtor');
-const generoRouter = require("./src/routes/genero");
-const redeRouter = require("./src/routes/rede");
-const dashboardRouter = require("./src/routes/dashboard");
+var produtorRouter = require('./src/routes/produtor');
+var generoRouter = require("./src/routes/genero");
+var redeRouter = require("./src/routes/rede");
+var dashboardRouter = require("./src/routes/dashboard");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

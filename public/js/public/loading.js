@@ -1,4 +1,4 @@
-let divLoad = document.getElementById("loadingModal");
+var divLoad = document.getElementById("loadingModal");
 function loading() {
     divLoad.showModal();
 }

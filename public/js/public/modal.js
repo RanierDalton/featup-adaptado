@@ -1,8 +1,8 @@
-let modalError= document.getElementById('popUp');
-let msgModalError = document.getElementById('msgPopUp');
+var modalError= document.getElementById('popUp');
+var msgModalError = document.getElementById('msgPopUp');
 
-let modalSuccess = document.getElementById("successModal");
-let msgSuccess = document.getElementById("msgModalSuccess");
+var modalSuccess = document.getElementById("successModal");
+var msgSuccess = document.getElementById("msgModalSuccess");
 
 function errorModal(text){
     modalError.showModal();

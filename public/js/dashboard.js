@@ -26,9 +26,9 @@ function obterDadosGrafico() {
 }
 
 function plotarKPI(totUser, actUser, totFeats){
-  let kpiTotalUsuarios = document.getElementById("usuariosTotal");
-  let kpiUsuariosAtivos = document.getElementById("usuariosAtivos");
-  let kpiFeats = document.getElementById("featsTotais");
+  var kpiTotalUsuarios = document.getElementById("usuariosTotal");
+  var kpiUsuariosAtivos = document.getElementById("usuariosAtivos");
+  var kpiFeats = document.getElementById("featsTotais");
 
   kpiTotalUsuarios.innerText = totUser;
   kpiUsuariosAtivos.innerText = actUser;
@@ -36,9 +36,9 @@ function plotarKPI(totUser, actUser, totFeats){
 }
 
 function plotarGeneros(data){
-  let genero = document.getElementById("generos");
+  var genero = document.getElementById("generos");
 
-  let dataChart = {
+  var dataChart = {
     labels: [],
       datasets: [
         {
@@ -84,9 +84,9 @@ function plotarGeneros(data){
 }
 
 function plotarStatusFeats(data){
-  let feat = document.getElementById("feats");
+  var feat = document.getElementById("feats");
 
-  let dataChart = {
+  var dataChart = {
     labels: [],
     datasets: [
       {
@@ -120,10 +120,10 @@ function plotarStatusFeats(data){
 }
 
 function plotarAplicativos(data){
-  let aplicativo = document.getElementById("aplicativos");
+  var aplicativo = document.getElementById("aplicativos");
 
 
-  let dataChart = {
+  var dataChart = {
     labels: [],
     datasets: [
       {

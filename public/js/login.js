@@ -1,18 +1,18 @@
-let isVisivel = false;
-let inputApelido = document.getElementById('iptApelido');
-let inputSenha = document.getElementById('iptSenha');
+var isVisivel = false;
+var inputApelido = document.getElementById('iptApelido');
+var inputSenha = document.getElementById('iptSenha');
 
 function entrar(){
     loading();
-    let apelido = inputApelido.value;
-    let senha = inputSenha.value;
+    var apelido = inputApelido.value;
+    var senha = inputSenha.value;
 
     if(apelido == '' || senha == ''){
         finalizarLoading();
         return errorModal("Preencha os campos corretamente");
     }
 
-    let credenciais = {
+    var credenciais = {
         alias:apelido,
         senha:senha
     }

@@ -1,4 +1,4 @@
-let isVisivelSenha = false;
+var isVisivelSenha = false;
 
 function mudarVisibilidade(number){
     if(isVisivelSenha){

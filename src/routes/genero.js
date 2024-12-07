@@ -1,6 +1,6 @@
-const generoController = require('../controllers/generoController');
-const express = require("express");
-const router = express.Router();
+var generoController = require('../controllers/generoController');
+var express = require("express");
+var router = express.Router();
 
 router.get("/generos", (req, res) => {
     return generoController.getGeneros(req, res);

@@ -55,7 +55,7 @@ function organizarInformacoes(data){
 }
 
 function organizarRedes(redes){
-    let html = '';
+    var html = '';
 
     redes.forEach(rede =>  {
         html += `
@@ -72,7 +72,7 @@ function organizarRedes(redes){
 }
 
 function organizarGeneros(generos){
-    let html = '';
+    var html = '';
 
     generos.forEach(genero =>  {
         html += `

@@ -1,6 +1,6 @@
 function validarSessao() {
-    let alias = sessionStorage.APELIDO_USUARIO;
-    let id = sessionStorage.ID_USUARIO;
+    var alias = sessionStorage.APELIDO_USUARIO;
+    var id = sessionStorage.ID_USUARIO;
 
     if ((alias == null || alias == undefined) || (id == null || id == undefined)) {
         sessionStorage.clear();
@@ -9,7 +9,7 @@ function validarSessao() {
 }
 
 function validarSessaoAdmin(){
-    let alias = sessionStorage.APELIDO_USUARIO;
+    var alias = sessionStorage.APELIDO_USUARIO;
 
     if (alias != "admin") {
         sessionStorage.clear();

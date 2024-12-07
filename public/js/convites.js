@@ -20,14 +20,14 @@ function carregarProdutoresConvite(){
 }
 
 function organizarCards(data){
-    let qtdLinhas = Math.floor(data.length / 3);
-    let cardsSobrar = data.length - (qtdLinhas * 3);
-    let contadorLinhas = 0;
-    let contadorCards = 0;
-    let divProdutores = document.getElementById("produtores");
-    let linhaAtual;
+    var qtdLinhas = Math.floor(data.length / 3);
+    var cardsSobrar = data.length - (qtdLinhas * 3);
+    var contadorLinhas = 0;
+    var contadorCards = 0;
+    var divProdutores = document.getElementById("produtores");
+    var linhaAtual;
 
-    for(let i=1; i<=data.length;i++){
+    for(var i=1; i<=data.length;i++){
         if(contadorCards == 0 && contadorLinhas < qtdLinhas){
             linhaAtual = document.createElement("div");
             linhaAtual.classList.add("linha");
@@ -40,7 +40,7 @@ function organizarCards(data){
             }
         }
 
-        let caixa = `
+        var caixa = `
             <div class="box">
                 <div class="cabecalho-box">
                     <img src="${data[i-1].foto}" alt="Foto de perfil do Produtor">

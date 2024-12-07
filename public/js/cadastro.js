@@ -1,26 +1,26 @@
-const opcoesGenero = fetch('/generos')
+var opcoesGenero = fetch('/generos')
 .then( (resposta) =>  {
     return resposta.json();   
 });
 
-const opcoesRede = fetch('/redes')
+var opcoesRede = fetch('/redes')
 .then((resposta) =>  {
     return resposta.json();
 });
 
-let optionsGeneros = ``;
-let optionsRedes = ``;
-let templateInputGeneros;
-let templateInputRedes;
+var optionsGeneros = ``;
+var optionsRedes = ``;
+var templateInputGeneros;
+var templateInputRedes;
 
 opcoesGenero.then((data) =>  {
-    let options = `<option value="" disabled selected selected>Selecione um dos Gêneros</option>`;
+    var options = `<option value="" disabled selected selected>Selecione um dos Gêneros</option>`;
     data.forEach((genero) =>  options +=`<option value="${genero.id}">${genero.nome}</option>`);
     optionsGeneros = options;
 });
 
 opcoesRede.then((data) =>  {
-    let options = `<option value="" disabled selected selected>Selecione uma redes sociais</option>`;
+    var options = `<option value="" disabled selected selected>Selecione uma redes sociais</option>`;
     data.forEach((rede) =>  options +=`<option value="${rede.id}">${rede.nome}</option>`);
     optionsRedes = options;
 });
@@ -46,7 +46,7 @@ function carregarRedes(){
 carregarGeneros();
 carregarRedes();
 
-let informacoesCadastro = {
+var informacoesCadastro = {
     nome: '',
     apelido: '',
     email: '',
@@ -58,27 +58,27 @@ let informacoesCadastro = {
     senha: ''
 };
 
-const CARACTERES_ESPECIAIS = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
+var CARACTERES_ESPECIAIS = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
 
-let contadorIptRedes = 1;
-let contadorIptGeneros = 1;
+var contadorIptRedes = 1;
+var contadorIptGeneros = 1;
 
-let telAtual = 1;
+var telAtual = 1;
 
-let nome = '';
-let apelido = '';
-let email = '';
-let descricao = '';
+var nome = '';
+var apelido = '';
+var email = '';
+var descricao = '';
 
-let generos =  [];
-let redesSociais = [];
-let aplicativo = '';
-let pontoForte = '';
+var generos =  [];
+var redesSociais = [];
+var aplicativo = '';
+var pontoForte = '';
 
-let senha = '';
-let confirmar = '';
+var senha = '';
+var confirmar = '';
 
-const divForm = document.getElementById("forms");
+var divForm = document.getElementById("forms");
 
 function mudarPagina(numeroPagina, content){
     if(verificarInputs(telAtual)){
@@ -98,16 +98,16 @@ function mudarPagina(numeroPagina, content){
 }
 
 function assimilarRedes(){
-    let redes = document.getElementsByName('redesSociais');
+    var redes = document.getElementsByName('redesSociais');
     if(informacoesCadastro.redes.length > 1){
-        for(let i=0; i<(informacoesCadastro.redes.length-1);i++){
+        for(var i=0; i<(informacoesCadastro.redes.length-1);i++){
             adicionarRede();
         }
     }
     
-    let contadorListaDados = 0;
+    var contadorListaDados = 0;
     
-    for(let i=1; i <= redes.length; i++){
+    for(var i=1; i <= redes.length; i++){
         if(i % 2 == 0){
             redes[i-2].value = informacoesCadastro.redes[contadorListaDados].idRede;
             redes[i-1].value = informacoesCadastro.redes[contadorListaDados].user;
@@ -117,10 +117,10 @@ function assimilarRedes(){
 }
 
 function assimilarGeneros(){
-    let generos = document.getElementsByName('iptGeneros');
+    var generos = document.getElementsByName('iptGeneros');
    
     if(informacoesCadastro.generos.length > 1){
-        for(let i=0; i<(informacoesCadastro.generos.length-1);i++){
+        for(var i=0; i<(informacoesCadastro.generos.length-1);i++){
             adicionarGenero();
         }
     }
@@ -128,7 +128,7 @@ function assimilarGeneros(){
     console.log(generos);
     console.log(informacoesCadastro.generos);
     
-    for(let i=0; i < generos.length; i++){
+    for(var i=0; i < generos.length; i++){
         generos[i].value = informacoesCadastro.generos[i];
     }
 }
@@ -311,17 +311,17 @@ function validarSenha(ipt){
 }
 
 function validarRedes(name){
-    let redes = document.getElementsByName(name);
-    let valoresInputs = [];
+    var redes = document.getElementsByName(name);
+    var valoresInputs = [];
 
     console.log(redes);
 
-    for(let i=0; i<redes.length; i++){
+    for(var i=0; i<redes.length; i++){
         if(redes[i].value == ""){
             return false; 
         }
 
-        let valor = {
+        var valor = {
             idRede:'',
             user:''
         };
@@ -339,10 +339,10 @@ function validarRedes(name){
 }
 
 function validarGeneros(nome){
-    let generos = document.getElementsByName(nome);
-    let valoresInputs = [];
+    var generos = document.getElementsByName(nome);
+    var valoresInputs = [];
 
-    for(let i=0; i<generos.length; i++){
+    for(var i=0; i<generos.length; i++){
         if(generos[i].value == ""){
             return false; 
         }
@@ -357,8 +357,8 @@ function validarGeneros(nome){
 
 // FUNCIONALIDADES DE ADD E REMOVER INPUTS
 function adicionarRede(){
-    let redes = document.getElementsByName('redesSociais');
-    let valoresInputs = [];
+    var redes = document.getElementsByName('redesSociais');
+    var valoresInputs = [];
 
     redes.forEach((ipt) =>  {
         valoresInputs.push(ipt.value);
@@ -366,7 +366,7 @@ function adicionarRede(){
 
     console.log(valoresInputs);
 
-    const inputRede = `<div class="inputs-class">`+templateInputRedes.outerHTML+`
+    var inputRede = `<div class="inputs-class">`+templateInputRedes.outerHTML+`
                         <div class="ipt-rede">
                             <input name="redesSociais" type="url" placeholder="Informe o user da mesma">
                             <button class="toggle-password" onclick="removerRede(${contadorIptRedes})">
@@ -383,26 +383,26 @@ function adicionarRede(){
     divRede.innerHTML += inputRede;
     contadorIptRedes++;
 
-    for(let i=0; i<valoresInputs.length;i++){
+    for(var i=0; i<valoresInputs.length;i++){
         redes[i].value = valoresInputs[i];
     }
 }
 
 function removerRede(indexInput){
-    let inputsRedes = document.getElementsByClassName('inputs-class');
+    var inputsRedes = document.getElementsByClassName('inputs-class');
     contadorIptRedes--;
     inputsRedes[indexInput].remove();
 }
 
 function adicionarGenero(){
-    let generos = document.getElementsByName('iptGeneros');
-    let valoresInputs = [];
+    var generos = document.getElementsByName('iptGeneros');
+    var valoresInputs = [];
 
     generos.forEach((ipt) =>  {
         valoresInputs.push(ipt.value);
     });
 
-    const inputGeneros = `
+    var inputGeneros = `
     <div class="input-genero">
         ${templateInputGeneros.outerHTML}
         <button class="toggle-password" onclick="removerGenero(${contadorIptRedes})">
@@ -418,13 +418,13 @@ function adicionarGenero(){
     divGenero.innerHTML += inputGeneros;
     contadorIptGeneros++;
     
-    for(let i=0; i<valoresInputs.length;i++){
+    for(var i=0; i<valoresInputs.length;i++){
         generos[i].value = valoresInputs[i];
     }
 }
 
 function removerGenero(indexInput){
-    let inputsGeneros = document.getElementsByClassName('input-genero');
+    var inputsGeneros = document.getElementsByClassName('input-genero');
 
     inputsGeneros[indexInput].remove();
 }

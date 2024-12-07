@@ -1,16 +1,16 @@
-const produtorModel = require('../models/produtorModel');
-const generoModel = require('../models/generoModel');
-const redeModel = require('../models/redeModel');
-const featModel = require('../models/featModel');
+var produtorModel = require('../models/produtorModel');
+var generoModel = require('../models/generoModel');
+var redeModel = require('../models/redeModel');
+var featModel = require('../models/featModel');
 
 function postFiltrarAcharFeats(req, res) {
     // TODO
 };
 
 function putStatusFeat(req, res)  {
-    const idSolicita = req.body.idSolicita;
-    const idAceita = req.body.idAceita;
-    const status = req.body.status;
+    var idSolicita = req.body.idSolicita;
+    var idAceita = req.body.idAceita;
+    var status = req.body.status;
 
     featModel.putStatusFeat(idSolicita, idAceita, status)
     .then((resultado) => {
@@ -20,8 +20,8 @@ function putStatusFeat(req, res)  {
 };
 
 function postFeat(req, res)  {
-    const idSolicita = req.body.idSolicita;
-    const idAceita = req.body.idAceita;
+    var idSolicita = req.body.idSolicita;
+    var idAceita = req.body.idAceita;
 
     featModel.postFeat(idSolicita, idAceita)
     .then((resultado) =>{
@@ -31,7 +31,7 @@ function postFeat(req, res)  {
 };
 
 function getFeatsAtivos(req, res)  {
-    let id = req.params.id;
+    var id = req.params.id;
 
     featModel.getFeatsAtivos(id)
     .then((data) =>{
@@ -41,7 +41,7 @@ function getFeatsAtivos(req, res)  {
 };
 
 function getConvites(req, res)  {
-    let id = req.params.id;
+    var id = req.params.id;
 
     featModel.getConvites(id)
     .then((data) => {
@@ -51,7 +51,7 @@ function getConvites(req, res)  {
 };
 
 function getPerfil(req, res)  {
-    let id = req.params.id;
+    var id = req.params.id;
 
     produtorModel.getPerfil(id)
     .then((data) => {
@@ -69,15 +69,15 @@ function getProdutores(req, res)  {
 }
 
 function getAcharFeats(req, res)  {
-    const idProdutor = req.params.id;
+    var idProdutor = req.params.id;
 
     generoModel.getGenerosProdutor(idProdutor)
     .then((resultadoGenero) => {
-        let condicoesGeneros = filtrarGenerosProdutor(resultadoGenero);
+        var condicoesGeneros = filtrarGenerosProdutor(resultadoGenero);
         
         produtorModel.getAcharFeats(condicoesGeneros, idProdutor)
         .then((resultado) => {
-            let resFiltro = filtrarGenerosCard(resultado);
+            var resFiltro = filtrarGenerosCard(resultado);
             
             if(resultado.length > 0){
                 return res.status(200).json(resFiltro);                
@@ -96,20 +96,20 @@ function getAcharFeats(req, res)  {
 };
 
 function postProdutor(req, res) {
-    let nome = req.body.nome;
-    let email = req.body.email;
-    let alias = req.body.apelido;
-    let senha = req.body.senha;
-    let descricao = req.body.descricao;
-    let aplicativo = req.body.aplicativo;
-    let pontoForte = req.body.pontoForte;
+    var nome = req.body.nome;
+    var email = req.body.email;
+    var alias = req.body.apelido;
+    var senha = req.body.senha;
+    var descricao = req.body.descricao;
+    var aplicativo = req.body.aplicativo;
+    var pontoForte = req.body.pontoForte;
 
-    let redes = req.body.redes;
-    let generos = req.body.generos;
+    var redes = req.body.redes;
+    var generos = req.body.generos;
 
     console.log(req.body);
 
-    const resValidation = cadastroValidation.validarCadastro(nome, email, alias, descricao, redes, generos, aplicativo, pontoForte, senha);
+    var resValidation = cadastroValidation.validarCadastro(nome, email, alias, descricao, redes, generos, aplicativo, pontoForte, senha);
     console.log(resValidation)
     if(!resValidation.status){
         return res.status(400).json(resValidation);
@@ -117,17 +117,17 @@ function postProdutor(req, res) {
 
     produtorModel.postProdutor(nome, alias, email, descricao, aplicativo, pontoForte, senha) 
     .then((resultado) => {
-        let getId = produtorModel.getProdutor(alias);
+        var getId = produtorModel.getProdutor(alias);
 
         getId.then((resultado) => {
-            let idProdutor = 0;
+            var idProdutor = 0;
             resultado.forEach((id) => {idProdutor = id.idProdutor; console.log(id.idProdutor)});
             console.log(idProdutor);
     
-            let valuesRedes = "";
+            var valuesRedes = "";
             
             
-            for(let i = 0; i < redes.length; i++){
+            for(var i = 0; i < redes.length; i++){
                 valuesRedes += `(${idProdutor}, ${redes[i].idRede}, '${redes[i].user}')${i != (redes.length -1) ? ",":""}`;
             }
         
@@ -135,9 +135,9 @@ function postProdutor(req, res) {
          
             redeModel.postRedeProdutor(valuesRedes)
             .then((resultado) => {
-                let valuesGeneros = "";
+                var valuesGeneros = "";
         
-                for(let i = 0; i < generos.length; i++){
+                for(var i = 0; i < generos.length; i++){
                     valuesGeneros += `(${idProdutor}, ${generos[i]})${i == (generos.length -1) ? "":","}`;
                 }
             
@@ -168,8 +168,8 @@ function postProdutor(req, res) {
 }
 
 function authProdutor(req, res)  {
-    const alias = req.body.alias;
-    const senha = req.body.senha;
+    var alias = req.body.alias;
+    var senha = req.body.senha;
 
     if (alias == undefined || alias == "") {
         res.status(400).send("Apelido Incorreto");
@@ -201,7 +201,7 @@ function authProdutor(req, res)  {
 }
 
 function patchPathFotoPerfil(req, res)  {
-    let aliasProdutor = req.params.alias;
+    var aliasProdutor = req.params.alias;
     
     produtorModel.patchPathFotoPerfil(`./assets/profiles/${req.file.filename}`,aliasProdutor)
     .then((resposta) => {
@@ -216,9 +216,9 @@ function patchPathFotoPerfil(req, res)  {
 
 
 function filtrarGenerosProdutor(generos)  {
-    let resposta = "g.nome IN (";
+    var resposta = "g.nome IN (";
 
-    for(let i=0; i<generos.length; i++){
+    for(var i=0; i<generos.length; i++){
         resposta += `'${generos[i].nome}'${i != generos.length-1? ',': ')'} `;
     }
 
@@ -226,19 +226,19 @@ function filtrarGenerosProdutor(generos)  {
 }
 
 function filtrarGenerosCard(dados)  {
-    let produtores = [];
+    var produtores = [];
     
     if(dados.length <= 0){
         return true;
     }
 
-    for(let i=0; i<dados.length;i++){
-        let idProdutorAtual = dados[i].idProdutor;
-        let indexProdutor = produtores.findIndex(produtor => produtor.idProdutor == idProdutorAtual);
+    for(var i=0; i<dados.length;i++){
+        var idProdutorAtual = dados[i].idProdutor;
+        var indexProdutor = produtores.findIndex(produtor => produtor.idProdutor == idProdutorAtual);
 
         console.log()
         if(indexProdutor == -1){
-            let produtorAtual = {
+            var produtorAtual = {
                 idProdutor: dados[i].idProdutor,
                 alias: dados[i].alias,
                 aplicativo: dados[i].aplicativo,
@@ -249,7 +249,7 @@ function filtrarGenerosCard(dados)  {
 
             produtores.push(produtorAtual);
         } else {
-            let generosProdutor = produtores[indexProdutor].genero;
+            var generosProdutor = produtores[indexProdutor].genero;
             if(!generosProdutor.includes(dados[i].genero)){
                 generosProdutor.push(dados[i].genero);
             } 
@@ -261,7 +261,7 @@ function filtrarGenerosCard(dados)  {
 
 function filtrarPerfilInfo(data) {
     console.log(data);
-    let info = {
+    var info = {
         alias: data[0].alias,
         aplicativo: data[0].aplicativo,
         pontoForte: data[0].pontoForte,
@@ -271,7 +271,7 @@ function filtrarPerfilInfo(data) {
         redes:[]
     };
 
-    for(let i=0; i<data.length;i++){
+    for(var i=0; i<data.length;i++){
         if(!info.generos.includes(data[i].genero)){
             info.generos.push(data[i].genero);
         }

@@ -1,11 +1,11 @@
-const produtorController = require('../controllers/produtorController');
-const express = require("express");
-const router = express.Router();
+var produtorController = require('../controllers/produtorController');
+var express = require("express");
+var router = express.Router();
 
-const multer = require('multer');
-const path = require('path');
+var multer = require('multer');
+var path = require('path');
 
-const storage = multer.diskStorage({
+var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/assets/profiles/');
     },
@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({
+var upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 5 }
 });

@@ -1,4 +1,4 @@
-let isAberto = false;
+var isAberto = false;
 
 function abrirPerfil(){
   if(isAberto){

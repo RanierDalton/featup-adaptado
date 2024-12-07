@@ -1,40 +1,40 @@
-const db = require('../database/config');
+var db = require('../database/config');
 
 function postProdutor(nome, alias, email, descricao, aplicativo, pontoForte, senha)  {
-    const instrucao = `INSERT INTO produtor (nome, alias, senha, email, descricao, pontoForte, aplicativo) VALUES ('${nome}', '${alias}', '${senha}', '${email}', '${descricao}', '${pontoForte}', '${aplicativo}')`;
+    var instrucao = `INSERT INTO produtor (nome, alias, senha, email, descricao, pontoForte, aplicativo) VALUES ('${nome}', '${alias}', '${senha}', '${email}', '${descricao}', '${pontoForte}', '${aplicativo}')`;
     
     return db.executar(instrucao);
 }
 
 function getProdutor(alias)  {
-    const instrucao = `SELECT idProdutor FROM produtor WHERE alias = '${alias}'`;
+    var instrucao = `SELECT idProdutor FROM produtor WHERE alias = '${alias}'`;
 
     return db.executar(instrucao);
 }
 
 function auth(alias, senha) {
-    const instrucao = `SELECT COUNT(idProdutor) as auth, idProdutor, alias, email, pathFotoPerfil as foto FROM produtor WHERE alias = '${alias}' AND senha = '${senha}'`;
+    var instrucao = `SELECT COUNT(idProdutor) as auth, idProdutor, alias, email, pathFotoPerfil as foto FROM produtor WHERE alias = '${alias}' AND senha = '${senha}'`;
 
     return db.executar(instrucao);
 }
 
 function getProdutoresTotais()  {
-    const instrucao = `SELECT COUNT(idProdutor) as resultado FROM produtor`;
+    var instrucao = `SELECT COUNT(idProdutor) as resultado FROM produtor`;
     return db.executar(instrucao);
 }
 
 function getProdutoresAtivos()  {
-    const instrucao = `SELECT COUNT(idProdutor) as resultado FROM produtor WHERE TIMESTAMPDIFF(DAY,now(),lastLogin) <= 10`;
+    var instrucao = `SELECT COUNT(idProdutor) as resultado FROM produtor WHERE TIMESTAMPDIFF(DAY,now(),lastLogin) <= 10`;
     return db.executar(instrucao);
 }
 
 function getAplicativosUsados()  {
-    const instrucao = `SELECT COUNT(aplicativo) as total, aplicativo as nome FROM produtor GROUP BY aplicativo`;
+    var instrucao = `SELECT COUNT(aplicativo) as total, aplicativo as nome FROM produtor GROUP BY aplicativo`;
     return db.executar(instrucao);
 }
 
 function getAcharFeats(condicoesGeneros, idProdutor)  {
-    const instrucao = `SELECT p.idProdutor, p.alias, p.aplicativo, p.pontoForte, p.pathFotoPerfil as foto, g.nome as genero
+    var instrucao = `SELECT p.idProdutor, p.alias, p.aplicativo, p.pontoForte, p.pathFotoPerfil as foto, g.nome as genero
         FROM produtor AS p
         JOIN genero_produtor as gp ON gp.fkProdutor = p.idProdutor 
         JOIN genero as g ON gp.fkGenero = g.idGenero 
@@ -58,7 +58,7 @@ function getAcharFeats(condicoesGeneros, idProdutor)  {
 }
 
 function getAcharFeatsGenericos(idProdutor)  {
-    const instrucao = `SELECT p.idProdutor, p.alias, p.aplicativo, p.pontoForte, p.pathFotoPerfil as foto, g.nome as genero
+    var instrucao = `SELECT p.idProdutor, p.alias, p.aplicativo, p.pontoForte, p.pathFotoPerfil as foto, g.nome as genero
         FROM produtor AS p
         JOIN genero_produtor as gp ON gp.fkProdutor = p.idProdutor 
         JOIN genero as g ON gp.fkGenero = g.idGenero 
@@ -84,7 +84,7 @@ function getAcharFeatsGenericos(idProdutor)  {
 }
 
 function getPerfil(id)  {
-    const instrucao = `
+    var instrucao = `
         SELECT descricao, pathFotoPerfil as pathFoto, alias, aplicativo, pontoForte, g.nome as genero,r.url as url, r.fontAwesomeTag as class, rp.usuario as 'user' 
         FROM produtor 
         JOIN genero_produtor as gp ON gp.fkProdutor = idProdutor 
@@ -98,13 +98,13 @@ function getPerfil(id)  {
 }
 
 function patchHorarioLogin(alias)  {
-    const instrucao = `UPDATE produtor SET lastLogin = now() WHERE alias = '${alias}'`;
+    var instrucao = `UPDATE produtor SET lastLogin = now() WHERE alias = '${alias}'`;
 
     return db.executar(instrucao);
 }
 
 function patchPathFotoPerfil(path, aliasProdutor)  {
-    const instrucao = `UPDATE produtor SET pathFotoPerfil = '${path}' WHERE alias = '${aliasProdutor}'`;
+    var instrucao = `UPDATE produtor SET pathFotoPerfil = '${path}' WHERE alias = '${aliasProdutor}'`;
 
     return db.executar(instrucao);
 }

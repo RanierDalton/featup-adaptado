@@ -1,6 +1,6 @@
-const redeController = require('../controllers/redeController');
-const express = require("express");
-const router = express.Router();
+var redeController = require('../controllers/redeController');
+var express = require("express");
+var router = express.Router();
 
 router.get("/redes", (req, res) => {
     return redeController.getRedes(req, res);
