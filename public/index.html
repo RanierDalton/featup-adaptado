@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEAT UP</title>
+
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="icon" href="./assets/fone-de-ouvido.png">
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+</head>
+<body>
+    <section class="landing">
+        <div class="home">
+            <header>
+                <div class="titulo">
+                    <span>FEAT UP</span>
+                </div>
+                <nav>
+                    <ul class="navbar">
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#criador">Criador</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+                <div class="acoes">
+                    <button onclick="getLogin()" class="btn-login">Login</button>
+                    <button onclick="getCadastro()" class="btn-cadastrar">Cadastrar</button>
+                </div>
+            </header>
+            
+            <div class="banner">
+                <div class="conteudo-banner">
+                    <span class="titulo">Potencialize seu conhecimento!</span>
+                    <span class="descricao">Aprenda com diversos outros produtores que fazem parte de nosso projeto!</span>
+                    <button onclick="getCadastro()" class="btn-participar">Participe!</button>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <section id="sobre" class="sobre">
+        <div class="titulo">
+            <span>Sobre  o Projeto</span>
+        </div>
+        <div class="conteudo-sobre">
+            <div class="texto">
+                <span>
+                    O Feat Up é uma plataforma criada para conectar produtores musicais, promovendo colaborações e facilitando o aprendizado mútuo por meio de projetos compartilhados. Em um mercado musical em constante expansão, a plataforma oferece um ambiente onde profissionais e entusiastas da produção musical podem se encontrar, criar juntos e expandir seus conhecimentos, impulsionando suas carreiras e explorando novas sonoridades.
+                </span>
+                <span class="texto-sobre">
+                    Através do Feat Up, os produtores podem buscar e encontrar parceiros com interesses e habilidades similares, facilitando a realização de “feats”, ou seja, colaborações musicais em um mesmo projeto. Cada usuário tem um perfil detalhado que inclui suas áreas de expertise, preferências de gênero e principais ferramentas de produção, o que permite encontrar parcerias compatíveis para projetos específicos.
+                </span>
+                <span class="texto-sobre">
+                    Além disso, a plataforma permite que os usuários enviem e recebam convites para feats, visualizem colaborações pendentes e acompanhem as que já estão em andamento. O sistema de “match” utiliza filtros e um algoritmo personalizado para garantir que cada colaboração seja relevante e vantajosa para ambos os lados.
+                </span>
+                <span class="texto-sobre">
+                    Com o Feat Up, novos talentos encontram oportunidades de aprendizado com produtores mais experientes, enquanto os veteranos podem expandir sua rede e explorar novas possibilidades criativas. O foco é não só na conexão, mas também no fortalecimento da comunidade de produtores musicais.
+                </span>
+            </div>
+            <div class="image">
+                <img class="img-sobre" src="./assets/sobre-img.png" alt="Imagem de um homem com casaco vermelho compondo uma música">
+            </div>
+        </div>
+    </section>
+
+    <section id="criador" class="criador">
+        <div class="titulo">
+            <span>Criador</span>
+        </div>
+        <div class="conteudo-criador">
+            <div class="imagem">
+                <img class="img-criador" src="./assets/img-ranier.jpg" alt="Imagem de um Homem Brnaco com cabelo hondulado vestindo uma roupa social preta">
+            </div>
+
+            <div class="texto">
+                <span>O Feat Up foi idealizado por um desenvolvedor com uma paixão antiga pela música. Desde cedo, ele sempre foi eclético em seus gostos musicais, apreciando gêneros como Rap, Trap, Rock e Pop. Sua primeira interação com o mundo da música foi nas aulas de música na escola, onde conheceu o canto e o piano, e desde então, manteve-se curioso sobre o universo musical.</span>
+                <br>
+                <br>
+                <span>Em 2023, durante seu curso de Jogos Digitais, ele descobriu o FLStudio, uma aplicação de produção musical, e se apaixonou pelo processo de criação de beats e efeitos sonoros. Esse contato o inspirou a criar o Feat Up, unindo suas habilidades em programação e seu interesse pela produção musical, oferecendo uma ferramenta que beneficia produtores de todos os níveis. </span>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="contato" class="contato">
+        <div class="conteudo-contato">
+            <div class="titulo">
+                <span>Contato</span>
+            </div>
+            <div id="contato" class="formulario">
+                <div class="campo-contato">
+                    <label for="iptNome">Nome:</label>
+                    <input id="iptNome" type="text" placeholder="Informe seu nome completo" required>
+                </div>
+                <div class="campo-contato margin-top">
+                    <label for="iptEmail">Email:</label>
+                    <input id="iptEmail" type="email" placeholder="Informe seu email" required>
+                </div>
+                <div class="campo-contato margin-top">
+                    <label for="iptAssunto">Assunto:</label>
+                    <input id="iptAssunto" type="text" placeholder="Informe o assunto" required>
+                </div>
+                <div class="campo-contato-msg margin-top">
+                    <label for="iptMensagem">Mensagem:</label>
+                    <textarea form="contato" rows="4.7" cols="90" id="iptMensagem" placeholder="Digite a mensagem do contato" required></textarea>
+                </div>
+                <div class="campo-confirmacao margin-top">
+                    <div class="checkbox-wrapper-1">
+                        <input id="iptConfirmar" type="checkbox" />
+                        <label for="iptConfirmar">Concordo em receber respostas por email</label>
+                    </div>
+                </div>
+                <div class="botao">
+                    <button onclick="sendEmail()" type="submit">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <footer>
+        <div class="conteudo-rodape">
+            <div class="redes">
+                <span>Nos acompanhe pelas redes sociais</span>
+                <div class="icones-redes">
+                    <a href="https://x.com/CoutoRanier" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-square-x-twitter"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ranierdalton/" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ranierdcpop" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-square-instagram"></i>
+                    </a>
+                    <a href="https://raynier.bandcamp.com" target="_blank" rel="noopener">
+                        <i class="fa-brands fa-bandcamp"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="copy">
+                <span>Copyright © 2024 Todos os direitos reservados</span>
+            </div>
+        </div>
+    </footer>
+
+    <dialog close id="popUp">
+        <div class="content">
+            <div class="corpo">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span id="msgPopUp"></span>
+            </div>
+                
+            <div class="rodape">
+                <button onclick="popUp.close();">OK</button>
+            </div>
+        </div>
+    </dialog>
+
+    <dialog close id="successModal">
+        <div class="content">
+            <div class="corpo">
+                <i class="fa-solid fa-circle-check" style="color: green;"></i>
+                <span id="msgModalSuccess"></span>
+            </div>
+                
+            <div class="rodape">
+                <button style="background-color: green;" onclick="closeSuccessModal()">OK</button>
+            </div>
+        </div>
+    </dialog>
+    <dialog close id="loadingModal">
+        <img src="./assets/load.gif" alt="">
+    </dialog>
+    <script src="./js/public/loading.js"></script>
+    <script src="./js/public/modal.js"></script>
+    <script src="./js/contato.js"></script>
+    <script src="./js/index.js"></script>
+
+    <!-- LIB FONT AWESOME-->
+    <script src="https://kit.fontawesome.com/d5ea0dfb99.js" crossorigin="anonymous"></script>
+</body>
+</html>
