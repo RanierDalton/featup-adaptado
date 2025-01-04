@@ -85,13 +85,14 @@ function plotarGeneros(data){
 
 function plotarStatusFeats(data){
   var feat = document.getElementById("feats");
+  var totalFeats = 0;
 
   var dataChart = {
     labels: [],
     datasets: [
       {
         data: [],
-        backgroundColor: ["#ebde34", "#006400","#BE0000"],
+        backgroundColor: ["#ada210", "#006400","#BE0000"],
         borderWidth: [0, 0],
       },
     ],
@@ -100,6 +101,7 @@ function plotarStatusFeats(data){
   data.forEach((status) =>  {
     dataChart.labels.push(status.nome);
     dataChart.datasets[0].data.push(status.total);
+    totalFeats += status.total;
   });
 
   new Chart(feat, {
@@ -111,11 +113,28 @@ function plotarStatusFeats(data){
           display: true,
           text: "Status dos Feats",
         },
-      },
-      tooltips: {
-        enabled: false,
+        tooltip: {
+          callbacks: {
+            label: function (item) {
+              var valor = dataChart.datasets[0].data[item.dataIndex];
+              var porcentagem = ((valor / totalFeats) * 100).toFixed(2); // Calcula o percentual arredondado
+              return `${porcentagem}% (${value})`;
+            },
+          },
+        },
+        datalabels: {
+          formatter: (valor, ctx) => {
+            var porcentagem = ((valor / totalFeats) * 100).toFixed(2);
+            return `${porcentagem}%`; // Mostra o percentual dentro da fatia
+          },
+          color: "#fff",
+          font: {
+            weight: "bold",
+          },
+        },
       },
     },
+    plugins: [ChartDataLabels], 
   });
 }
 
