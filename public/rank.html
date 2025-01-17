@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank | Feat Up</title>
+    <link rel="stylesheet" href="./styles/admin.css">
+    <link rel="icon" href="./assets/fone-de-ouvido.png">
+    <script src="./js/public/session.js"></script>
+</head>
+<!-- GUARDAR ONLOAD PARA DESENVOLVER onload="validarSessaoAdmin(), obterDadosRank()" -->
+<body >
+    <section class="cabecalho">
+        <header>
+            <div class="conteudo">
+                <div class="titulo">
+                    <span>FEAT UP</span>
+                </div>
+                <nav>
+                    <ul class="navbar">
+                        <li><a href="dashboard.html" class="ativo">Dashboard</a></li>
+                        <li><a href="#" class="ativo">Rank</a></li>
+                    </ul>
+                </nav>
+                <div class="profile">
+                    <button onclick="abrirPerfil()">
+                        <img id="fotoPerfil" src="./assets/default.png" alt="">
+                    </button>
+                    <div id="dropdownPerfil" class="dropdown-content">
+                        <a href="#" onclick="limparSessao()"  class="sair">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </section>
+    
+    <!-- adicionar o rank - 17/01/2025 -->
+    <section class="dash">
+        <div class="conteudo-rank">
+            <div class="mais">
+                <div class="destaque">
+                    <div class="conteudo-destaque">
+                        <div class="titulo-destaque">
+                            <span>Jogador Mais Feats: <b class="vermelho">20 feats</b></span>
+                        </div>
+                        <div class="info-destaque">
+                            <div class="perfil-destaque">
+                                <img id="fotoPerfil" src="./assets/default.png" alt="">
+                                <span>Apelido</span>
+                            </div>
+                            <div class="estatisticas">
+                                <p>Taxa Aceitação: <b class="vermelho">50%</b></p>
+                                <p>Taxa Solicitação: <b class="vermelho">60%</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resto">
+                    <div class="linha borda-inferior">
+                        <span>Apelido - <b class="vermelho">X</b> feats - TA <b class="vermelho">X%</b></span>
+                    </div>
+                    <div class="linha borda-inferior">
+                        <span>Apelido - <b class="vermelho">X</b> feats - TA <b class="vermelho">X%</b></span>
+                    </div>
+                    <div class="linha borda-inferior">
+                        <span>Apelido - <b class="vermelho">X</b> feats - TA <b class="vermelho">X%</b></span>
+                    </div>
+                    <div class="linha">
+                        <span>Apelido - <b class="vermelho">X</b> feats - TA <b class="vermelho">X%</b></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="menos">
+                <div class="destaque">
+                    <div class="conteudo-destaque">
+                        <div class="titulo-destaque">
+                            <span>Jogador Menos Feats: <b class="vermelho">10 feats</b></span>
+                        </div>
+                        <div class="info-destaque">
+                            <div class="perfil-destaque">
+                                <img id="fotoPerfil" src="./assets/default.png" alt="">
+                                <span>Apelido</span>
+                            </div>
+                            <div class="estatisticas">
+                                <p>Taxa Aceitação: <b class="vermelho">20%</b></p>
+                                <p>Taxa Solicitação: <b class="vermelho">10%</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resto">
+                    <div class="linha borda-inferior">
+                        <span>Apelido - <b class="vermelho">X</b> feats - TA <b class="vermelho">X%</b></span>
+                    </div>
+                    <div class="linha borda-inferior">
+                        <span>Apelido - <b class="vermelho">X</b> feats - TA <b class="vermelho">X%</b></span>
+                    </div>
+                    <div class="linha borda-inferior">
+                        <span>Apelido - <b class="vermelho">X</b> feats - TA <b class="vermelho">X%</b></span>
+                    </div>
+                    <div class="linha">
+                        <span>Apelido - <b class="vermelho">X</b> feats - TA <b class="vermelho">X%</b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <dialog close id="loadingModal">
+        <img src="./assets/load.gif" alt="">
+    </dialog>
+    <script src="./js/public/loading.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    
+    <script src="./js/public/perfil.js"></script>
+    <script src="./js/rank.js"></script>
+    <!-- LIB FONT AWESOME-->
+    <script src="https://kit.fontawesome.com/d5ea0dfb99.js" crossorigin="anonymous"></script>
+</body>
+</html>

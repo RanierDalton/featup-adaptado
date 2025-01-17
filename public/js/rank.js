@@ -1,0 +1,1 @@
+// Criação prévia do JS do ranking

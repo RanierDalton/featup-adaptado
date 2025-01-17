@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
-
-
 :root{
     /* TAMANHOS */
     --tamanho-kpi: 3.1em;
     --tamanho-titulo: 3em;
     --tamanho-sub:2em;
     --tamanho-texto-nav:1.1em;
+    --tamanho-texto-rank:1.3em;
     --tamanho-desc: 1.5em;
     --tamanho-pequeno:1em;
 
