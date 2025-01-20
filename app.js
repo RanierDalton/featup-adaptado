@@ -26,6 +26,8 @@ var produtorRouter = require('./src/routes/produtor');
 var generoRouter = require("./src/routes/genero");
 var redeRouter = require("./src/routes/rede");
 var dashboardRouter = require("./src/routes/dashboard");
+// Adicionar referência ao router - 20/01
+var rankRouter = require("./src/routes/rank");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,10 +42,12 @@ app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 
+// Usar o router do rank - 20/01
 app.use(produtorRouter);
 app.use(generoRouter);
 app.use(redeRouter);
 app.use(dashboardRouter);
+app.use(rankRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
