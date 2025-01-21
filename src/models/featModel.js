@@ -37,4 +37,200 @@ function putStatusFeat(idSolicita, idAceita, status){
     return db.executar(instrucao);
 };
 
-module.exports = {getFeatsTotais, getStatusFeats, getConvites, getFeatsAtivos, putStatusFeat, postFeat};
+// Adicionar as funções e comandos para o ranking - 21/01
+
+function getUsuariosFeatsKPI(){
+    var instrucao = `
+    WITH FeatsConfirmados AS (
+    SELECT 
+        fkProdutorAceita AS produtor,
+        COUNT(*) AS totalFeatsConfirmados
+    FROM feat
+    WHERE statusFeat = 1
+    GROUP BY fkProdutorAceita
+),
+FeatsSolicitados AS (
+    SELECT 
+        fkProdutorSolicita AS produtor,
+        COUNT(*) AS totalFeatsConfirmados
+    FROM feat
+    WHERE statusFeat = 1
+    GROUP BY fkProdutorSolicita
+),
+ProdutoresComFeats AS (
+    SELECT 
+        produtor,
+        SUM(totalFeatsConfirmados) AS totalFeats
+    FROM (
+        SELECT produtor, totalFeatsConfirmados FROM FeatsConfirmados
+        UNION ALL
+        SELECT produtor, totalFeatsConfirmados FROM FeatsSolicitados
+    ) AS Feats
+    GROUP BY produtor
+),
+ProdutoresOrdenados AS (
+    SELECT 
+        P.idProdutor,
+        P.pathFotoPerfil AS caminhoFoto,   -- Referência correta para a coluna
+        P.alias,
+        PF.totalFeats,
+        PF.totalFeats * 100.0 / (SELECT COUNT(*) FROM feat WHERE fkProdutorAceita = PF.produtor) AS taxaAceitacao,
+        PF.totalFeats * 100.0 / (SELECT COUNT(*) FROM feat WHERE fkProdutorSolicita = PF.produtor) AS taxaSolicitacao
+    FROM ProdutoresComFeats PF
+    INNER JOIN produtor P ON PF.produtor = P.idProdutor
+),
+ProdutorMaiorFeats AS (
+    SELECT idProdutor, totalFeats
+    FROM ProdutoresOrdenados
+    ORDER BY totalFeats DESC
+    LIMIT 1
+),
+ProdutorMenorFeats AS (
+    SELECT idProdutor, totalFeats
+    FROM ProdutoresOrdenados
+    ORDER BY totalFeats ASC
+    LIMIT 1
+)
+SELECT 
+    P.caminhoFoto,  -- Use 'caminhoFoto' aqui, já que você fez um alias
+    P.alias,
+    P.totalFeats,
+    P.taxaAceitacao,
+    P.taxaSolicitacao
+FROM ProdutoresOrdenados P
+WHERE P.idProdutor IN (
+    SELECT idProdutor FROM ProdutorMaiorFeats
+    UNION
+    SELECT idProdutor FROM ProdutorMenorFeats
+);
+    
+    `;
+    return db.executar(instrucao);
+};
+
+
+function getRankUsuariosMais(){
+    var instrucao = `WITH FeatsConfirmados AS (
+    SELECT 
+        fkProdutorAceita AS produtor,
+        COUNT(*) AS totalFeatsConfirmados
+    FROM feat
+    WHERE statusFeat = 1
+    GROUP BY fkProdutorAceita
+),
+FeatsSolicitados AS (
+    SELECT 
+        fkProdutorSolicita AS produtor,
+        COUNT(*) AS totalFeatsConfirmados
+    FROM feat
+    WHERE statusFeat = 1
+    GROUP BY fkProdutorSolicita
+),
+ProdutoresComFeats AS (
+    SELECT 
+        produtor,
+        SUM(totalFeatsConfirmados) AS totalFeats
+    FROM (
+        SELECT produtor, totalFeatsConfirmados FROM FeatsConfirmados
+        UNION ALL
+        SELECT produtor, totalFeatsConfirmados FROM FeatsSolicitados
+    ) AS Feats
+    GROUP BY produtor
+),
+ProdutoresOrdenados AS (
+    SELECT 
+        P.idProdutor,
+        P.alias,
+        PF.totalFeats,
+        PF.totalFeats * 100.0 / (SELECT COUNT(*) FROM feat WHERE fkProdutorAceita = PF.produtor) AS taxaAceitacao
+    FROM ProdutoresComFeats PF
+    INNER JOIN produtor P ON PF.produtor = P.idProdutor
+),
+ProdutorMaiorFeats AS (
+    SELECT idProdutor
+    FROM ProdutoresOrdenados
+    ORDER BY totalFeats DESC
+    LIMIT 1
+),
+ProdutorMenorFeats AS (
+    SELECT idProdutor
+    FROM ProdutoresOrdenados
+    ORDER BY totalFeats ASC
+    LIMIT 1
+)
+SELECT 
+    P.alias,
+    P.totalFeats,
+    P.taxaAceitacao
+FROM ProdutoresOrdenados P
+WHERE P.idProdutor NOT IN (SELECT idProdutor FROM ProdutorMaiorFeats)
+AND P.idProdutor NOT IN (SELECT idProdutor FROM ProdutorMenorFeats)
+ORDER BY P.totalFeats DESC
+LIMIT 4;`;
+    return db.executar(instrucao);
+};
+
+function getRankUsuariosMenos(){
+    var instrucao = `
+    WITH FeatsConfirmados AS (
+    SELECT 
+        fkProdutorAceita AS produtor,
+        COUNT(*) AS totalFeatsConfirmados
+    FROM feat
+    WHERE statusFeat = 1
+    GROUP BY fkProdutorAceita
+),
+FeatsSolicitados AS (
+    SELECT 
+        fkProdutorSolicita AS produtor,
+        COUNT(*) AS totalFeatsConfirmados
+    FROM feat
+    WHERE statusFeat = 1
+    GROUP BY fkProdutorSolicita
+),
+ProdutoresComFeats AS (
+    SELECT 
+        produtor,
+        SUM(totalFeatsConfirmados) AS totalFeats
+    FROM (
+        SELECT produtor, totalFeatsConfirmados FROM FeatsConfirmados
+        UNION ALL
+        SELECT produtor, totalFeatsConfirmados FROM FeatsSolicitados
+    ) AS Feats
+    GROUP BY produtor
+),
+ProdutoresOrdenados AS (
+    SELECT 
+        P.idProdutor,
+        P.alias,
+        PF.totalFeats,
+        PF.totalFeats * 100.0 / (SELECT COUNT(*) FROM feat WHERE fkProdutorAceita = PF.produtor) AS taxaAceitacao
+    FROM ProdutoresComFeats PF
+    INNER JOIN produtor P ON PF.produtor = P.idProdutor
+),
+ProdutorMaiorFeats AS (
+    SELECT idProdutor
+    FROM ProdutoresOrdenados
+    ORDER BY totalFeats DESC
+    LIMIT 1
+),
+ProdutorMenorFeats AS (
+    SELECT idProdutor
+    FROM ProdutoresOrdenados
+    ORDER BY totalFeats ASC
+    LIMIT 1
+)
+SELECT 
+    P.alias,
+    P.totalFeats,
+    P.taxaAceitacao
+FROM ProdutoresOrdenados P
+WHERE P.idProdutor NOT IN (SELECT idProdutor FROM ProdutorMaiorFeats)
+AND P.idProdutor NOT IN (SELECT idProdutor FROM ProdutorMenorFeats)
+ORDER BY P.totalFeats ASC
+LIMIT 4;
+    `;
+    return db.executar(instrucao);
+};
+
+module.exports = {getFeatsTotais, getStatusFeats, getConvites, getFeatsAtivos, putStatusFeat, postFeat,getUsuariosFeatsKPI,getRankUsuariosMais,getRankUsuariosMenos};
