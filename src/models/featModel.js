@@ -38,7 +38,6 @@ function putStatusFeat(idSolicita, idAceita, status){
 };
 
 // Adicionar as funções e comandos para o ranking - 21/01
-
 function getUsuariosFeatsKPI(){
     var instrucao = `
     WITH FeatsConfirmados AS (
