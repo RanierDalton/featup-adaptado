@@ -8,8 +8,8 @@
     <link rel="icon" href="./assets/fone-de-ouvido.png">
     <script src="./js/public/session.js"></script>
 </head>
-<!-- GUARDAR ONLOAD PARA DESENVOLVER onload="validarSessaoAdmin(), obterDadosRank()" -->
-<body >
+<!-- colocar novamente o onload - 30/01 -->
+<body onload="validarSessaoAdmin(), obterDadosRanking()">
     <section class="cabecalho">
         <header>
             <div class="conteudo">
@@ -41,21 +41,21 @@
                 <div class="destaque">
                     <div class="conteudo-destaque">
                         <div class="titulo-destaque">
-                            <span>Jogador Mais Feats: <b class="vermelho">20 feats</b></span>
+                            <span>Jogador Mais Feats: <b class="vermelho" id="feats_mais">20 feats</b></span>
                         </div>
                         <div class="info-destaque">
                             <div class="perfil-destaque">
-                                <img id="fotoPerfil" src="./assets/default.png" alt="">
-                                <span>Apelido</span>
+                                <img id="fotoPerfilMais" src="./assets/default.png" alt="">
+                                <span id="apelido_mais">Apelido</span>
                             </div>
                             <div class="estatisticas">
-                                <p>Taxa Aceitação: <b class="vermelho">50%</b></p>
-                                <p>Taxa Solicitação: <b class="vermelho">60%</b></p>
+                                <p>Taxa Aceitação: <b class="vermelho" id="ta_mais">50%</b></p>
+                                <p>Taxa Solicitação: <b class="vermelho" id="ts_mais">60%</b></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="resto">
+                <div class="restoMais">
                     <div class="linha borda-inferior">
                         <span>Apelido - <b class="vermelho">X</b> feats - TA <b class="vermelho">X%</b></span>
                     </div>
@@ -76,21 +76,21 @@
                 <div class="destaque">
                     <div class="conteudo-destaque">
                         <div class="titulo-destaque">
-                            <span>Jogador Menos Feats: <b class="vermelho">10 feats</b></span>
+                            <span>Jogador Menos Feats: <b class="vermelho" id="feats_menos"></b></span>
                         </div>
                         <div class="info-destaque">
                             <div class="perfil-destaque">
-                                <img id="fotoPerfil" src="./assets/default.png" alt="">
-                                <span>Apelido</span>
+                                <img id="fotoPerfilMenos" src="./assets/default.png" alt="">
+                                <span id="apelido_menos">Apelido</span>
                             </div>
                             <div class="estatisticas">
-                                <p>Taxa Aceitação: <b class="vermelho">20%</b></p>
-                                <p>Taxa Solicitação: <b class="vermelho">10%</b></p>
+                                <p>Taxa Aceitação: <b class="vermelho" id="ta_menos">20%</b></p>
+                                <p>Taxa Solicitação: <b class="vermelho" id="ts_menos">10%</b></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="resto">
+                <div class="restoMenos">
                     <div class="linha borda-inferior">
                         <span>Apelido - <b class="vermelho">X</b> feats - TA <b class="vermelho">X%</b></span>
                     </div>
