@@ -4,6 +4,11 @@ body{
     background-color: var(--adm-bg-color);
 }
 
+ /* Estilizar fotos ranking - 31/01 */
+#fotoPerfilMais, #fotoPerfilMenos{
+    border-radius: 50%;
+}
+
 #loadingModal{
     margin: auto;
     background: none;

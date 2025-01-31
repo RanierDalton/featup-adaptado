@@ -9,6 +9,8 @@ function obterDadosRanking() {
             response.json()
             .then((resposta) =>  {
                 plotarDados(resposta);
+                // Corrigir bug loading "infinito"
+                finalizarLoading();
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -51,20 +53,20 @@ function plotarDados(data){
         var taxaAceitacaoAtualMenos = `${Number(data.usuariosMenos[i].taxaAceitacao).toFixed(2)}%`;
 
         var contentMais = `<div class="linha">
-                        <span>${apelidoAtualMais} - <b class="vermelho">${featsAtualMais}</b> feats - TA <b class="vermelho">${taxaAceitacaoAtualMais}</b></span>
+                        <span>${apelidoAtualMais} - <b class="vermelho">${featsAtualMais}</b> feats - TA: <b class="vermelho">${taxaAceitacaoAtualMais}</b></span>
                     </div>`;
 
         var contentMenos = `<div class="linha">
-                    <span>${apelidoAtualMenos} - <b class="vermelho">${featsAtualMenos}</b> feats - TA <b class="vermelho">${taxaAceitacaoAtualMenos}</b></span>
+                    <span>${apelidoAtualMenos} - <b class="vermelho">${featsAtualMenos}</b> feats - TA: <b class="vermelho">${taxaAceitacaoAtualMenos}</b></span>
                 </div>`;
 
         if(i+1 != data.usuariosMais.length){
             contentMais = `<div class="linha borda-inferior">
-                        <span>${apelidoAtualMais} - <b class="vermelho">${featsAtualMais}</b> feats - TA <b class="vermelho">${taxaAceitacaoAtualMais}</b></span>
+                        <span>${apelidoAtualMais} - <b class="vermelho">${featsAtualMais}</b> feats - TA: <b class="vermelho">${taxaAceitacaoAtualMais}</b></span>
                     </div>`;
 
             contentMenos = `<div class="linha borda-inferior">
-                    <span>${apelidoAtualMenos} - <b class="vermelho">${featsAtualMenos}</b> feats - TA <b class="vermelho">${taxaAceitacaoAtualMenos}</b></span>
+                    <span>${apelidoAtualMenos} - <b class="vermelho">${featsAtualMenos}</b> feats - TA: <b class="vermelho">${taxaAceitacaoAtualMenos}</b></span>
                 </div>`;
         }
 
